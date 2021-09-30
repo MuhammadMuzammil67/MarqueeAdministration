@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="~/Content/stk_CSS.css" rel="stylesheet" />
+	<link href="~/Content/Res_login_CSS.css" rel="stylesheet" />
+	<link href="~/Content/acco_CSS.css" rel="stylesheet" />
+	<link href="~/Content/headerhover.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+	<header>
+		@RenderPage("~/Views/Shared/combine/Header_name.cshtml")
+
+
+
+	</header>
+	
+	<div class="" style="margin-top:50px;">
+
+		@RenderBody();
+		<div style="padding-left:50px;padding-right:50px;">
+			<img class="img-responsive img-rounded" src="~/Picture/images/mehria1.jpg" width="1350" height="180" />
+			
+		</div>
+		<hr />
+		<div class="mainmenu">
+			<div>
+
+
+				<button class="btn btn-sm mainbtn small" data-target="#reservelogin" data-toggle="modal"><img class="img-responsive" src="~/Picture/icons8-event-64.png" width="80" height="80" /></button>
+
+				<p style="font-size:12pt; text-align:center">Reservation</p>
+
+				<div class="modal  fade" id="reservelogin" tabindex="-1">
+					@{
+						Html.RenderPartial("ReservationLogin");
+						
+					}
+				</div>
+			</div>
+			<div>
+
+				<button class="btn btn-sm mainbtn small" data-target="#accountlogin" data-toggle="modal"><img class="img-responsive" src="~/Picture/icons8-accounting-80(1).png" width="80" height="80" /></button>
+
+				<p style="font-size:12pt; text-align:center">Accounts</p>
+
+				<div class="modal  fade" id="accountlogin" tabindex="-1">
+
+					@{
+						Html.RenderPartial("AccountLogin");
+						
+					}
+				</div>
+			</div>
+			<div>
+
+				<button class="btn btn-sm mainbtn small" data-target="#stocklogin" data-toggle="modal"><img class="img-responsive" src="~/Picture/icons8-warehouse-64.png" width="80" height="80" /></button>
+
+				<p style="font-size:12pt; text-align:center"> Stocks</p>
+
+
+				<div class="modal  fade" id="stocklogin" tabindex="-1">
+					@{
+						Html.RenderPartial("StockLogin");
+
+					}
+
+
+				</div>
+			</div>
+		</div>
+
+		
+	</div>
+
+	
+		<footer class="footer">
+			@RenderPage("~/Views/Shared/combine/Footer_name.cshtml")
+
+
+		</footer>
+
+
+
+	<script src="~/scripts/popup.js"></script>
+		<script src="~/scripts/jquery-3.4.1.js"></script>
+	<script src="~/scripts/bootstrap.js"></script>
+
+
+</body>
+
+</html>

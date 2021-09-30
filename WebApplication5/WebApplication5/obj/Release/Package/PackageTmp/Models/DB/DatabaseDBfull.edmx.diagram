@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="244a2fe14b0042b08f5679b3b4e7adf9" Name="Diagram1">
+        <EntityTypeShape EntityType="MehriamarqueeModel.AdditionalFacility" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.AdditionalFacilitiesandFunction" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.Dish" Width="1.5" PointX="3.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.Menu" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.MenuWithDish" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.Program" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.ProgramsandMenu" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_AdditionalFacilitiesandFunction_AdditionalFacilities" ManuallyRouted="false" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_MenuWithDishes_Dishes" ManuallyRouted="false" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_MenuWithDishes_Menus" ManuallyRouted="false" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_ProgramsandMenu_Menus" ManuallyRouted="false" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_ProgramsandMenu_Programs" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.Beverage" Width="1.5" PointX="11.25" PointY="7.625" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.Desert" Width="1.5" PointX="11.25" PointY="0.75" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.DishWithItem" Width="1.5" PointX="13.5" PointY="8.75" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.Item" Width="1.5" PointX="11.25" PointY="10.875" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_DishWithItems_Dishes" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_DishWithItems_Items" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.beveragesWithFunctionWithMenu" Width="1.5" PointX="16.5" PointY="10.625" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_beveragesWithDesertWithFunctionWithMenu_Beverages1" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_beveragesWithFunctionWithMenu_Dishes" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.DesertWithFunctionWithMenu" Width="1.5" PointX="13.5" PointY="4.75" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_Deserts" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_Dishes" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.headOfAccount" Width="1.5" PointX="15.625" PointY="1.375" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.subTypesOfHeadAccount" Width="1.5" PointX="17.875" PointY="1.25" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_subTypesOfHeadAccounts_headOfAccounts" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.Account" Width="1.5" PointX="7.375" PointY="8.875" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.AccountTransaction" Width="1.5" PointX="20.125" PointY="4.75" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_AccountTransaction_Account" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_AccountTransaction_subTypesOfHeadAccounts" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.SubAccountBalance" Width="1.5" PointX="23.125" PointY="5" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_SubAccountBalances_Account" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_SubAccountBalances_subTypesOfHeadAccounts" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.Customer" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.QuantityupdateBeveragestable" Width="1.5" PointX="13.5" PointY="18.875" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.QuantityupdatedDeserttable" Width="1.5" PointX="13.5" PointY="16" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.QuantityupdatedItemtable" Width="1.5" PointX="13.5" PointY="12.25" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_QuantityupdateBeveragestable_Beverages" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_QuantityupdatedDeserttable_Deserts" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_QuantityupdatedItemtable_Items" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.FunctionRequestedTable" Width="1.5" PointX="11.25" PointY="14.625" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_beveragesWithDesertWithFunctionWithMenu_FunctionRequestedTable" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_FunctionRequestedTable" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_DishWithItems_FunctionRequestedTable" />
+        <EntityTypeShape EntityType="MehriamarqueeModel.Bookingdata" Width="1.5" PointX="9" PointY="1.5" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_AdditionalFacilitiesandFunction_Bookingdata" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_Bookingdata_Customer" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_Bookingdata_Menus" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_Bookingdata_Programs" />
+        <AssociationConnector Association="MehriamarqueeModel.FK_FunctionRequestedTable_Bookingdata" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

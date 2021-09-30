@@ -1,0 +1,115 @@
+﻿@model IEnumerable<WebApplication5.Models.DB.AccountTransaction>
+@using WebApplication5.Models.DB;
+@{
+	ViewBag.Title = "Creategeneralledger";
+	Layout = "~/Views/Shared/_LayoutReservationChangescreen.cshtml";
+	//IEnumerable<AccountTransaction> acctr = ViewData["acctr"] as IEnumerable<AccountTransaction>;
+	MehriamarqueeEntities meh = new MehriamarqueeEntities();
+	List<Account> acc = meh.Accounts.ToList();
+	ViewBag.acc = acc;
+}
+
+<h2 class="label-success" style="display:flex; justify-content:center; color:white;">GENERAL LEDGER</h2>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<div class="row">
+		@Html.Label("Search by Account Name", new { @class = "control-label col-sm-2" })
+		<div class="col-lg-4">
+			@if (ViewBag.acc != null)
+			{
+				@Html.DropDownList("accountname", new SelectList(ViewBag.acc,"accountNo", "accountName"), "........Select Account Name........", new { @class = "form-control" })
+			}
+		</div>
+		@Html.Label("From Date", new { @class = "control-label col-sm-2" })
+		<div class="col-lg-4">
+			@Html.TextBox("FromDate", null, new { @class = "form-control" ,@Type="date" })
+		</div>
+		
+	</div>
+	<div class="row">
+		@Html.Label("To Date", new { @class = "control-label col-sm-2" })
+		<div class="col-lg-4">
+			@Html.TextBox("ToDate", null, new { @class = "form-control", @Type = "date" })
+		</div>
+
+		<div class="col-md-2 right">
+			<input type="submit" value="Search" class="btn-lg btn-primary" />
+		</div>
+	</div>
+
+
+}
+<br />
+<table style="display:flex; justify-content:center" class="table table-bordered table-condensed  table-responsive">
+    <tr>
+       
+        <th>
+           Transaction Name
+        </th>
+        <th>
+           Transaction Date
+        </th>
+        <th>
+            Debit/Credit
+        </th>
+        <th>
+            Amount
+        </th>
+		<th >
+			Balance
+		</th>
+		<th>
+			Account 
+		</th>
+    </tr>
+	@{
+		int counting = 0;
+	}
+@foreach (var item in Model)
+{
+
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.transactionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.transactionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Debit_Credit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+@if (counting == 0)
+{
+		<td rowspan=@ViewBag.Count>
+			
+			@ViewBag.totalbalance
+				
+			
+		</td>
+
+        <td rowspan=@ViewBag.Count>
+           
+            @Html.DisplayFor(modelItem => item.subTypesOfHeadAccount.subName)
+	       
+        </td>
+		counting++;
+		}
+    </tr>
+	}
+
+
+</table>
+@{
+	if (TempData["message"] != null)
+	{
+		<script type="text/javascript">
+        alert(@Html.Raw(Json.Encode(TempData["message"])));
+		</script>
+	}
+}

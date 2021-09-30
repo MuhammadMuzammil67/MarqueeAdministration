@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MehriamarqueeModelStoreContainer" CdmEntityContainer="MehriamarqueeEntities">
+    <EntitySetMapping Name="AdditionalFacilities">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.AdditionalFacility">
+        <MappingFragment StoreEntitySet="AdditionalFacilities">
+          <ScalarProperty Name="additionalID" ColumnName="additionalID" />
+          <ScalarProperty Name="additionalName" ColumnName="additionalName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdditionalFacilitiesandFunctions">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.AdditionalFacilitiesandFunction">
+        <MappingFragment StoreEntitySet="AdditionalFacilitiesandFunction">
+          <ScalarProperty Name="additionalandfunctionID" ColumnName="additionalandfunctionID" />
+          <ScalarProperty Name="functionID" ColumnName="functionID" />
+          <ScalarProperty Name="additionalID" ColumnName="additionalID" />
+          <ScalarProperty Name="additionalFacilityPrice" ColumnName="additionalFacilityPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dishes">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.Dish">
+        <MappingFragment StoreEntitySet="Dishes">
+          <ScalarProperty Name="dishID" ColumnName="dishID" />
+          <ScalarProperty Name="dishName" ColumnName="dishName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.Menu">
+        <MappingFragment StoreEntitySet="Menus">
+          <ScalarProperty Name="menuID" ColumnName="menuID" />
+          <ScalarProperty Name="menuName" ColumnName="menuName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuWithDishes">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.MenuWithDish">
+        <MappingFragment StoreEntitySet="MenuWithDishes">
+          <ScalarProperty Name="menuanddishID" ColumnName="menuanddishID" />
+          <ScalarProperty Name="menuID" ColumnName="menuID" />
+          <ScalarProperty Name="dishID" ColumnName="dishID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programs">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.Program">
+        <MappingFragment StoreEntitySet="Programs">
+          <ScalarProperty Name="programID" ColumnName="programID" />
+          <ScalarProperty Name="programName" ColumnName="programName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramsandMenus">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.ProgramsandMenu">
+        <MappingFragment StoreEntitySet="ProgramsandMenu">
+          <ScalarProperty Name="menuandProgramID" ColumnName="menuandProgramID" />
+          <ScalarProperty Name="menuID" ColumnName="menuID" />
+          <ScalarProperty Name="programID" ColumnName="programID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Beverages">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.Beverage">
+        <MappingFragment StoreEntitySet="Beverages">
+          <ScalarProperty Name="quantityOfBeverages" ColumnName="quantityOfBeverages" />
+          <ScalarProperty Name="beveragesPurchasePrice" ColumnName="beveragesPurchasePrice" />
+          <ScalarProperty Name="beveragesSalePrice" ColumnName="beveragesSalePrice" />
+          <ScalarProperty Name="beveragesName" ColumnName="beveragesName" />
+          <ScalarProperty Name="beverageId" ColumnName="beverageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deserts">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.Desert">
+        <MappingFragment StoreEntitySet="Deserts">
+          <ScalarProperty Name="quantityOfdesert" ColumnName="quantityOfdesert" />
+          <ScalarProperty Name="desertPurchasePrice" ColumnName="desertPurchasePrice" />
+          <ScalarProperty Name="desertSalePrice" ColumnName="desertSalePrice" />
+          <ScalarProperty Name="desertName" ColumnName="desertName" />
+          <ScalarProperty Name="desertId" ColumnName="desertId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DishWithItems">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.DishWithItem">
+        <MappingFragment StoreEntitySet="DishWithItems">
+          <ScalarProperty Name="priceOfItems" ColumnName="priceOfItems" />
+          <ScalarProperty Name="qunatityOfItems" ColumnName="qunatityOfItems" />
+          <ScalarProperty Name="itemId" ColumnName="itemId" />
+          <ScalarProperty Name="dishId" ColumnName="dishId" />
+          <ScalarProperty Name="requestID" ColumnName="requestID" />
+          <ScalarProperty Name="dishAndItemID" ColumnName="dishAndItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.Item">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="purchasePrice" ColumnName="purchasePrice" />
+          <ScalarProperty Name="salesPrice" ColumnName="salesPrice" />
+          <ScalarProperty Name="itemName" ColumnName="itemName" />
+          <ScalarProperty Name="itemId" ColumnName="itemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="beveragesWithFunctionWithMenus">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.beveragesWithFunctionWithMenu">
+        <MappingFragment StoreEntitySet="beveragesWithFunctionWithMenu">
+          <ScalarProperty Name="PriceBeverages" ColumnName="PriceBeverages" />
+          <ScalarProperty Name="requestID" ColumnName="requestID" />
+          <ScalarProperty Name="dishID" ColumnName="dishID" />
+          <ScalarProperty Name="quantityBeverages" ColumnName="quantityBeverages" />
+          <ScalarProperty Name="beverageID" ColumnName="beverageID" />
+          <ScalarProperty Name="beveragesWithDesertWithFunctionWithMenuID" ColumnName="beveragesWithDesertWithFunctionWithMenuID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DesertWithFunctionWithMenus">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.DesertWithFunctionWithMenu">
+        <MappingFragment StoreEntitySet="DesertWithFunctionWithMenu">
+          <ScalarProperty Name="requestID" ColumnName="requestID" />
+          <ScalarProperty Name="dishID" ColumnName="dishID" />
+          <ScalarProperty Name="quantityDesert" ColumnName="quantityDesert" />
+          <ScalarProperty Name="PriceDesert" ColumnName="PriceDesert" />
+          <ScalarProperty Name="desertID" ColumnName="desertID" />
+          <ScalarProperty Name="DesertWithFunctionWithMenuId" ColumnName="DesertWithFunctionWithMenuId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="headOfAccounts">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.headOfAccount">
+        <MappingFragment StoreEntitySet="headOfAccounts">
+          <ScalarProperty Name="typeName" ColumnName="typeName" />
+          <ScalarProperty Name="typeID" ColumnName="typeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subTypesOfHeadAccounts">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.subTypesOfHeadAccount">
+        <MappingFragment StoreEntitySet="subTypesOfHeadAccounts">
+          <ScalarProperty Name="typeId" ColumnName="typeId" />
+          <ScalarProperty Name="subName" ColumnName="subName" />
+          <ScalarProperty Name="subID" ColumnName="subID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="accountName" ColumnName="accountName" />
+          <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountTransactions">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.AccountTransaction">
+        <MappingFragment StoreEntitySet="AccountTransaction">
+          <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+          <ScalarProperty Name="subtypeID" ColumnName="subtypeID" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="Debit_Credit" ColumnName="Debit_Credit" />
+          <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+          <ScalarProperty Name="transactionName" ColumnName="transactionName" />
+          <ScalarProperty Name="transactionID" ColumnName="transactionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubAccountBalances">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.SubAccountBalance">
+        <MappingFragment StoreEntitySet="SubAccountBalances">
+          <ScalarProperty Name="accountNo" ColumnName="accountNo" />
+          <ScalarProperty Name="Credit" ColumnName="Credit" />
+          <ScalarProperty Name="Debit" ColumnName="Debit" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="subID" ColumnName="subID" />
+          <ScalarProperty Name="accountbalanceID" ColumnName="accountbalanceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="CnicNo" ColumnName="CnicNo" />
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuantityupdateBeveragestables">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.QuantityupdateBeveragestable">
+        <MappingFragment StoreEntitySet="QuantityupdateBeveragestable">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="beverageID" ColumnName="beverageID" />
+          <ScalarProperty Name="changebeveID" ColumnName="changebeveID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuantityupdatedDeserttables">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.QuantityupdatedDeserttable">
+        <MappingFragment StoreEntitySet="QuantityupdatedDeserttable">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="desertID" ColumnName="desertID" />
+          <ScalarProperty Name="changeditemID" ColumnName="changeditemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuantityupdatedItemtables">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.QuantityupdatedItemtable">
+        <MappingFragment StoreEntitySet="QuantityupdatedItemtable">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="itemID" ColumnName="itemID" />
+          <ScalarProperty Name="changeditemID" ColumnName="changeditemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FunctionRequestedTables">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.FunctionRequestedTable">
+        <MappingFragment StoreEntitySet="FunctionRequestedTable">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+          <ScalarProperty Name="functionID" ColumnName="functionID" />
+          <ScalarProperty Name="requestID" ColumnName="requestID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bookingdatas">
+      <EntityTypeMapping TypeName="MehriamarqueeModel.Bookingdata">
+        <MappingFragment StoreEntitySet="Bookingdata">
+          <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+          <ScalarProperty Name="CnicNo" ColumnName="CnicNo" />
+          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="timeShift" ColumnName="timeShift" />
+          <ScalarProperty Name="TotalCharges" ColumnName="TotalCharges" />
+          <ScalarProperty Name="Extras" ColumnName="Extras" />
+          <ScalarProperty Name="RemainingPayment" ColumnName="RemainingPayment" />
+          <ScalarProperty Name="AdvancePayment" ColumnName="AdvancePayment" />
+          <ScalarProperty Name="rateperGuest" ColumnName="rateperGuest" />
+          <ScalarProperty Name="noofGuest" ColumnName="noofGuest" />
+          <ScalarProperty Name="functionDate" ColumnName="functionDate" />
+          <ScalarProperty Name="bookingDate" ColumnName="bookingDate" />
+          <ScalarProperty Name="functionID" ColumnName="functionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

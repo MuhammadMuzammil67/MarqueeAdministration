@@ -1,0 +1,114 @@
+﻿!DOCTYPE html>
+<html>
+<head>
+
+
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title</title>
+	<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="~/Content/headerhover.css" rel="stylesheet" />
+	<link href="~/Content/sidebarcollapse.css" rel="stylesheet" />
+	<script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+	<header>
+		@RenderPage("~/Views/Shared/combine/Header_name.cshtml");
+	</header>
+
+	<div id="mySidebar" class="sidebar">
+		<h2 class="label-primary" style="color:white">Reports</h2>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a class="arrow" onclick="window.open('@Url.Action("AccountReceivable","AccountsReport")')">(A/R)Report</a>
+		<a class="arrow" onclick="window.open('@Url.Action("AccountPayable", "AccountsReport")')">(A/P)Report</a>
+		<a class="arrow" onclick="window.open('@Url.Action("IncomeTax","GeneralLedger")')">Income Tax Report</a>
+		<a href="@Url.Action("StockReports","StockGeneratedreport")">Stocks Generated Reports</a>
+	
+	
+
+
+	</div>
+
+	<div id="main">
+		<button id="openbtn" onclick="openNav()">&#9776;</button>
+
+	</div>
+
+	<div class="container ">
+
+
+		<div style="display:flex; justify-content:center">
+			<img class="img-responsive" src="~/Picture/Accounts/Main_img.jpg" width="260" height="180" />
+		</div>
+		<br />
+		<div class="firstp" style="display:flex; justify-content:center;">
+			<div class="secondp" style="width: 260px; height: 60px; color: white; border-width: 4px; border-color: steelblue; background-color: #29AAE2;">
+				<p style="margin-top:14px; text-align:center; font-weight:bold; font-size:14pt; color:white;">ACCOUNTS</p>
+			</div>
+		</div>
+
+		<br />
+		<div class="buttnsacc">
+			<div>
+
+
+				<img class="img-responsive imgetrans" src="~/Picture/Accounts/Journal.jpg" width="100" height="80" />
+
+			</div>
+			<div>
+
+
+				<img class="img-responsive imgetrans" src="~/Picture/Accounts/Ledger.jpg" width="100" height="80" />
+
+			</div>
+			<div>
+
+				<img class="img-responsive imgetrans" src="~/Picture/Accounts/Voucher.jpg" width="100" height="80" />
+
+			</div>
+
+
+		</div>
+		<div class="buttnsacc">
+			<div>
+				<button class="mainbtnacct" onclick="location.href='@Url.Action("general","GeneralJeneral")'">General Journal</button>
+			</div>
+			<div>
+				<button class="mainbtnacct" onclick="location.href='@Url.Action("Creategeneralledger","GeneralLedger")'">General Ledger</button>
+			</div>
+			<div>
+				<button class="mainbtnacct" onclick="location.href='@Url.Action("Index","AccountsReport")'">Reports</button>
+			</div>
+
+		</div>
+		<div id="Gridtable">
+
+			@RenderBody();
+		</div>
+
+
+
+
+	</div>
+
+	<hr />
+
+
+
+
+	<footer class="footer">
+
+		@RenderPage("~/Views/Shared/combine/Footer_name.cshtml");
+
+	</footer>
+	<script src="~/scripts/Gridview.js"></script>
+	<script src="~/scripts/popup.js"></script>
+	<script src="~/scripts/jquery-3.4.1.js"></script>
+	<script src="~/scripts/bootstrap.js"></script>
+
+
+
+</body>
+</html>

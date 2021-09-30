@@ -1,0 +1,99 @@
+﻿@model IEnumerable<WebApplication5.Models.DB.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutReservationChangescreen.cshtml";
+}
+<button class="btn btn-group-sm glyphicon glyphicon-menu-left" onclick="location.href='@Url.Action("Index","ReservationEventsmain")'"></button>
+<h2 class="label-info" style="display:flex; justify-content:center" >CUSTOMER INFORMATION</h2>
+
+@using (Html.BeginForm()) {
+@Html.AntiForgeryToken()
+
+	<div class="row">
+		@Html.Label("Search by CNIC NO:",new {@class="control-label col-md-2" })
+		<div class="col-md-4">
+			@Html.TextBox("SearchtermCnic",null,new { @class="form-control"})
+		</div>
+		@Html.Label("Search by Mobile Number:", new { @class = "control-label col-md-2" })
+		<div class="col-md-4">
+			@Html.TextBox("SearchtermMobile", null, new { @class = "form-control"})
+		</div>
+		<br />
+		<br />
+		<div class="col-md-3 col-lg-offset-2">
+			<input type="submit" value="Search" class="btn-lg btn-primary" />
+		</div>
+	</div>
+}
+<br />
+
+@if (Model.Count() > 0)
+{
+
+<table class="table table-bordered table-striped table-condensed table-responsive table-hover " style="display:flex; justify-content:center">
+    <tr>
+        <th>
+           CNIC NO
+        </th>
+        <th>
+           CUSTOMER NAME
+        </th>
+        <th>
+           MOBILE NO
+        </th>
+        <th>
+           ADDRESS
+        </th>
+        <th>
+           REMARKS
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Reverse())
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CnicNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mobileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.remarks)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditCustomer", new {  id=item.customerID}) |
+         
+            @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.customerID })
+        </td>
+    </tr>
+
+}
+
+</table>
+}
+
+else
+{
+	<div class="alert alert-success">
+		<p>There is no Current Record Exist</p>
+	</div>
+}
+
+
+@{
+	if (TempData["message"] != null)
+	{
+		<script type="text/javascript">
+        alert(@Html.Raw(Json.Encode(TempData["message"])));
+		</script>
+	}
+}

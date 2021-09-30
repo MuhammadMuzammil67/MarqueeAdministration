@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Stocks";
+    Layout = "~/Views/Shared/_LayoutStocksmainpage.cshtml";
+}
+
+@{
+	if (TempData["message"] != null)
+	{
+		<script type="text/javascript">
+        alert(@Html.Raw(Json.Encode(TempData["message"])));
+		</script>
+	}
+}
+
+
+

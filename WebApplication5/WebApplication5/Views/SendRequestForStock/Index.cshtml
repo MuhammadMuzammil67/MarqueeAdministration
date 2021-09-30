@@ -1,0 +1,126 @@
+﻿@model IEnumerable<WebApplication5.Models.DB.Bookingdata>
+@using WebApplication5.Models.DB;
+@{
+	ViewBag.Title = "Stock Request";
+	Layout = "~/Views/Shared/_LayoutFunctionDetail.cshtml";
+//	IEnumerable<FunctionRequestedTable> requestReport = ViewData["func"] as IEnumerable<FunctionRequestedTable>;
+	//int count = ViewBag.countval;
+}
+@*<script>
+	function userrequest() {
+		$('.requestbtn').click(function (e) {
+			e.preventDefault();
+			$(this).focus();
+			$(this).addClass('btn-success');
+			$(this).addClass('disabled');
+			$(this).text('Request sended');
+
+		
+
+
+
+		})
+	}
+</script>*@
+<button class="btn btn-group-sm glyphicon glyphicon-menu-left" onclick="location.href='@Url.Action("Index","ReservationEventsmain")'"></button>
+<h2 class="label-info">Stock Request</h2>
+
+<table class="table table-bordered table-striped table-responsive table-hover">
+    <tr>
+		<th>
+			Booking Date
+		</th>
+		<th>
+			Function Date
+		</th>
+		<th>
+			No of Guest
+		</th>
+		<th>
+			Rate Per Guest(Rs)
+		</th>
+		<th>
+			Stage Charges(Rs)
+		</th>
+		<th>
+			Basics/Others(Rs)
+		</th>
+		<th>
+			Extras
+		</th>
+		<th>
+			Total Charges
+		</th>
+		<th>
+			Event Occuras
+		</th>
+       
+		<th class="alert-warning glyphicon glyphicon-arrow-down">
+			CLICK HERE BELOW FOR REQUEST
+		</th>
+    </tr>
+
+@foreach (var item in Model) {
+	//int checker = 0;
+	//foreach(var it in requestReport)
+	//{
+	//	if (item.functionID != it.functionID )
+	//	{
+	//		if (checker == 0)
+	//		{
+	<tr>
+
+
+
+		<td>
+			@Html.DisplayFor(modelItem => item.bookingDate)
+		</td>
+
+		<td>
+			@Html.DisplayFor(modelItem => item.functionDate)
+		</td>
+
+		<td>
+			@Html.DisplayFor(modelItem => item.noofGuest)
+		</td>
+
+		<td>
+			@Html.DisplayFor(modelItem => item.rateperGuest)
+		</td>
+
+		<td>
+			@Html.DisplayFor(modelItem => item.AdvancePayment)
+		</td>
+
+		<td>
+			@Html.DisplayFor(modelItem => item.RemainingPayment)
+		</td>
+
+		<td>
+			@Html.DisplayFor(modelItem => item.Extras)
+		</td>
+
+		<td>
+			@Html.DisplayFor(modelItem => item.TotalCharges)
+		</td>
+
+		<td>
+			@Html.DisplayFor(modelItem => item.timeShift)
+		</td>
+
+
+		<td>
+
+			@Html.ActionLink("Send Request", "RequestFunction", new { ID = item.functionID }, new { @class = "btn-lg btn-primary requestbtn center-block ", onclick = "userrequest()" })
+
+		</td>
+
+	</tr>
+				@*checker++;
+			}
+		}
+	}*@
+}
+
+</table>
+<script src="~/scripts/Requestofbutton.js"></script>

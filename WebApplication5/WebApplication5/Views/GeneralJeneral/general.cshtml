@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebApplication5.Models.DB.Account>
+
+@{
+    ViewBag.Title = "general";
+    Layout = "~/Views/Shared/_LayoutReservationChangescreen.cshtml";
+}
+@Html.ActionLink("ADD NEW ACCOUNT", "Addingnewaccounts", "GeneralJeneral")
+
+<h2 class="label-success" style="display:flex; justify-content:center; color:white;">Account Detail</h2>
+
+
+<table class="table table-hover ">
+    <tr>
+        <th>
+            Account Name
+        </th>
+        <th>
+           Mobile No
+        </th>
+        <th>
+           Address
+        </th>
+        <th>
+           Description
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Reverse()) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.accountName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mobileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Add General Journal", "addgeneraljenrnal","GeneralJeneral", new { selectedaccountid = item.accountNo  },null)        
+        </td>
+    </tr>
+}
+
+</table>
+@{
+	if (TempData["message"] != null)
+	{
+		<script type="text/javascript">
+        alert(@Html.Raw(Json.Encode(TempData["message"])));
+		</script>
+	}
+}

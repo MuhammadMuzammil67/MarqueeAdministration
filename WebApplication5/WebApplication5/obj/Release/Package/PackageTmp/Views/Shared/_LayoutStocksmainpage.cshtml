@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	
+
+	
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="~/Content/headerhover.css" rel="stylesheet" />
+	<link href="~/Content/sidebarcollapse.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+	<header>
+		@RenderPage("~/Views/Shared/combine/Header_name.cshtml")
+	</header>
+	
+	<div id="mySidebar" class="sidebar">
+		<h2 class="label-success" style="color:white">Stocks</h2>
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="@Url.Action("addNewStocksGet","AddnewStocks")">Add New Stock <Span class="badge"></Span></a>
+		<a href="@Url.Action("CheckFunctionRequest","StocksDetail")">Stock Requests <span class="badge">@ViewBag.totalrequests</span></a>
+		<a href="@Url.Action("StockReports","StockGeneratedreport")">Stocks Generated Reports</a>
+		<a href="@Url.Action("StockInOut","StockGeneratedreport")">Stocks In/ Out</a>
+		<a href="@Url.Action("History","StockGeneratedreport")">History of Quantity Updation</a>
+
+
+	</div>
+
+	<div id="main">
+		<button id="openbtn" onclick="openNav()" >&#9776;</button>
+
+	</div>
+	
+	<div class="container ">
+	<br />
+		
+			<h2 class="label-default" style="color:white">Stock/Inventory</h2>
+		<br />
+			<div class="stockmenu" >
+
+				<div>
+
+
+					<button class="btn btn-sm mainbtn small" onclick="location.href='@Url.Action("ViewMeats","Meat")'"><img class="img-responsive" src="~/Picture/Stockimg/icons8-meat-80.png" width="60" height="60" /></button>
+
+				</div>
+				<div>
+
+					<button class="btn btn-sm mainbtn small" onclick="location.href='@Url.Action("ViewVegetable","Vegetable")'"><img class="img-responsive" src="~/Picture/Stockimg/icons8-beetroot-and-carrot-64.png" width="60" height="60" /></button>
+
+				</div>
+				<div>
+
+					<button class="btn btn-sm mainbtn small " onclick="location.href='@Url.Action("ViewGrossory","Grocery")'"><img class="img-responsive" src="~/Picture/Stockimg/icons8-grocery-shelf-64.png" width="60" height="60" /></button>
+
+				</div>
+
+
+
+
+			</div>
+			<div class="stockmenulabel" style="padding-left:2%">
+
+				<div>
+					<p>Meats</p>
+				</div>
+				<div>
+					<p>Vegetable</p>
+				</div>
+				<div style="padding-right:8px">
+					<p>Grocery</p>
+				</div>
+
+			</div>
+	
+
+		<br />
+		<br />
+		<div class="lowerstockmenu" >
+
+			<div>
+
+				<button class="btn btn-sm mainbtn small" onclick="location.href='@Url.Action("ViewBeverages","Berverages")'"><img class="img-responsive" src="~/Picture/Stockimg/icons8-liquor-shelf-64(1).png" width="60" height="60" /></button>
+
+			</div>
+			
+			<div>
+
+				<button class="btn btn-sm mainbtn small " onclick="location.href='@Url.Action("ViewDeserts","Deserts")'"><img class="img-responsive" src="~/Picture/Stockimg/icons8-banana-split-64.png" width="60" height="60" /></button>
+
+			</div>
+
+		</div>
+		<div class="reserve2">
+
+			<div>
+				<p>Beverages</p>
+			</div>
+			<div>
+				<p>Deserts</p>
+			</div>
+			
+
+		</div>
+		<div id="Gridtable">
+
+			@RenderBody();
+		</div>
+
+
+
+
+	</div>
+	
+		<hr />
+		
+	
+
+	
+		<footer class="footer">
+
+			@RenderPage("~/Views/Shared/combine/Footer_name.cshtml")
+
+		</footer>
+		<script src="~/scripts/Gridview.js"></script>
+		<script src="~/scripts/popup.js"></script>
+		<script src="~/scripts/jquery-3.4.1.js"></script>
+		<script src="~/scripts/bootstrap.js"></script>
+
+
+
+</body>
+</html>

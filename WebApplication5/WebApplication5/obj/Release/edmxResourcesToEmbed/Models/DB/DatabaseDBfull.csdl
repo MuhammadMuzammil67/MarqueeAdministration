@@ -1,0 +1,748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MehriamarqueeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdditionalFacility">
+    <Key>
+      <PropertyRef Name="additionalID" />
+    </Key>
+    <Property Name="additionalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="additionalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AdditionalFacilitiesandFunctions" Relationship="Self.FK_AdditionalFacilitiesandFunction_AdditionalFacilities" FromRole="AdditionalFacilities" ToRole="AdditionalFacilitiesandFunction" />
+  </EntityType>
+  <EntityType Name="AdditionalFacilitiesandFunction">
+    <Key>
+      <PropertyRef Name="additionalandfunctionID" />
+    </Key>
+    <Property Name="additionalandfunctionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="functionID" Type="Int32" Nullable="false" />
+    <Property Name="additionalID" Type="Int32" Nullable="false" />
+    <Property Name="additionalFacilityPrice" Type="Int32" />
+    <NavigationProperty Name="AdditionalFacility" Relationship="Self.FK_AdditionalFacilitiesandFunction_AdditionalFacilities" FromRole="AdditionalFacilitiesandFunction" ToRole="AdditionalFacilities" />
+    <NavigationProperty Name="Bookingdata" Relationship="MehriamarqueeModel.FK_AdditionalFacilitiesandFunction_Bookingdata" FromRole="AdditionalFacilitiesandFunction" ToRole="Bookingdata" />
+  </EntityType>
+  <EntityType Name="Dish">
+    <Key>
+      <PropertyRef Name="dishID" />
+    </Key>
+    <Property Name="dishID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dishName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MenuWithDishes" Relationship="Self.FK_MenuWithDishes_Dishes" FromRole="Dishes" ToRole="MenuWithDishes" />
+    <NavigationProperty Name="DishWithItems" Relationship="MehriamarqueeModel.FK_DishWithItems_Dishes" FromRole="Dish" ToRole="DishWithItem" />
+    <NavigationProperty Name="beveragesWithFunctionWithMenus" Relationship="MehriamarqueeModel.FK_beveragesWithFunctionWithMenu_Dishes" FromRole="Dish" ToRole="beveragesWithFunctionWithMenu" />
+    <NavigationProperty Name="DesertWithFunctionWithMenus" Relationship="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_Dishes" FromRole="Dish" ToRole="DesertWithFunctionWithMenu" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="menuID" />
+    </Key>
+    <Property Name="menuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MenuWithDishes" Relationship="Self.FK_MenuWithDishes_Menus" FromRole="Menus" ToRole="MenuWithDishes" />
+    <NavigationProperty Name="ProgramsandMenus" Relationship="Self.FK_ProgramsandMenu_Menus" FromRole="Menus" ToRole="ProgramsandMenu" />
+    <NavigationProperty Name="Bookingdatas" Relationship="MehriamarqueeModel.FK_Bookingdata_Menus" FromRole="Menu" ToRole="Bookingdata" />
+  </EntityType>
+  <EntityType Name="MenuWithDish">
+    <Key>
+      <PropertyRef Name="menuanddishID" />
+    </Key>
+    <Property Name="menuanddishID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menuID" Type="Int32" Nullable="false" />
+    <Property Name="dishID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dish" Relationship="Self.FK_MenuWithDishes_Dishes" FromRole="MenuWithDishes" ToRole="Dishes" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_MenuWithDishes_Menus" FromRole="MenuWithDishes" ToRole="Menus" />
+  </EntityType>
+  <EntityType Name="Program">
+    <Key>
+      <PropertyRef Name="programID" />
+    </Key>
+    <Property Name="programID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="programName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProgramsandMenus" Relationship="Self.FK_ProgramsandMenu_Programs" FromRole="Programs" ToRole="ProgramsandMenu" />
+    <NavigationProperty Name="Bookingdatas" Relationship="MehriamarqueeModel.FK_Bookingdata_Programs" FromRole="Program" ToRole="Bookingdata" />
+  </EntityType>
+  <EntityType Name="ProgramsandMenu">
+    <Key>
+      <PropertyRef Name="menuandProgramID" />
+    </Key>
+    <Property Name="menuandProgramID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menuID" Type="Int32" />
+    <Property Name="programID" Type="Int32" />
+    <NavigationProperty Name="Menu" Relationship="Self.FK_ProgramsandMenu_Menus" FromRole="ProgramsandMenu" ToRole="Menus" />
+    <NavigationProperty Name="Program" Relationship="Self.FK_ProgramsandMenu_Programs" FromRole="ProgramsandMenu" ToRole="Programs" />
+  </EntityType>
+  <Association Name="FK_AdditionalFacilitiesandFunction_AdditionalFacilities">
+    <End Role="AdditionalFacilities" Type="Self.AdditionalFacility" Multiplicity="1" />
+    <End Role="AdditionalFacilitiesandFunction" Type="Self.AdditionalFacilitiesandFunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdditionalFacilities">
+        <PropertyRef Name="additionalID" />
+      </Principal>
+      <Dependent Role="AdditionalFacilitiesandFunction">
+        <PropertyRef Name="additionalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuWithDishes_Dishes">
+    <End Role="Dishes" Type="Self.Dish" Multiplicity="1" />
+    <End Role="MenuWithDishes" Type="Self.MenuWithDish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dishes">
+        <PropertyRef Name="dishID" />
+      </Principal>
+      <Dependent Role="MenuWithDishes">
+        <PropertyRef Name="dishID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuWithDishes_Menus">
+    <End Role="Menus" Type="Self.Menu" Multiplicity="1" />
+    <End Role="MenuWithDishes" Type="Self.MenuWithDish" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="menuID" />
+      </Principal>
+      <Dependent Role="MenuWithDishes">
+        <PropertyRef Name="menuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProgramsandMenu_Menus">
+    <End Role="Menus" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="ProgramsandMenu" Type="Self.ProgramsandMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menus">
+        <PropertyRef Name="menuID" />
+      </Principal>
+      <Dependent Role="ProgramsandMenu">
+        <PropertyRef Name="menuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProgramsandMenu_Programs">
+    <End Role="Programs" Type="Self.Program" Multiplicity="0..1" />
+    <End Role="ProgramsandMenu" Type="Self.ProgramsandMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Programs">
+        <PropertyRef Name="programID" />
+      </Principal>
+      <Dependent Role="ProgramsandMenu">
+        <PropertyRef Name="programID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MehriamarqueeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdditionalFacilities" EntityType="Self.AdditionalFacility" />
+    <EntitySet Name="AdditionalFacilitiesandFunctions" EntityType="Self.AdditionalFacilitiesandFunction" />
+    <EntitySet Name="Dishes" EntityType="Self.Dish" />
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="MenuWithDishes" EntityType="Self.MenuWithDish" />
+    <EntitySet Name="Programs" EntityType="Self.Program" />
+    <EntitySet Name="ProgramsandMenus" EntityType="Self.ProgramsandMenu" />
+    <AssociationSet Name="FK_AdditionalFacilitiesandFunction_AdditionalFacilities" Association="Self.FK_AdditionalFacilitiesandFunction_AdditionalFacilities">
+      <End Role="AdditionalFacilities" EntitySet="AdditionalFacilities" />
+      <End Role="AdditionalFacilitiesandFunction" EntitySet="AdditionalFacilitiesandFunctions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuWithDishes_Dishes" Association="Self.FK_MenuWithDishes_Dishes">
+      <End Role="Dishes" EntitySet="Dishes" />
+      <End Role="MenuWithDishes" EntitySet="MenuWithDishes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuWithDishes_Menus" Association="Self.FK_MenuWithDishes_Menus">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="MenuWithDishes" EntitySet="MenuWithDishes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProgramsandMenu_Menus" Association="Self.FK_ProgramsandMenu_Menus">
+      <End Role="Menus" EntitySet="Menus" />
+      <End Role="ProgramsandMenu" EntitySet="ProgramsandMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProgramsandMenu_Programs" Association="Self.FK_ProgramsandMenu_Programs">
+      <End Role="Programs" EntitySet="Programs" />
+      <End Role="ProgramsandMenu" EntitySet="ProgramsandMenus" />
+    </AssociationSet>
+    <EntitySet Name="Beverages" EntityType="MehriamarqueeModel.Beverage" />
+    <EntitySet Name="Deserts" EntityType="MehriamarqueeModel.Desert" />
+    <EntitySet Name="DishWithItems" EntityType="MehriamarqueeModel.DishWithItem" />
+    <EntitySet Name="Items" EntityType="MehriamarqueeModel.Item" />
+    <AssociationSet Name="FK_DishWithItems_Dishes" Association="MehriamarqueeModel.FK_DishWithItems_Dishes">
+      <End Role="Dish" EntitySet="Dishes" />
+      <End Role="DishWithItem" EntitySet="DishWithItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishWithItems_Items" Association="MehriamarqueeModel.FK_DishWithItems_Items">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="DishWithItem" EntitySet="DishWithItems" />
+    </AssociationSet>
+    <EntitySet Name="beveragesWithFunctionWithMenus" EntityType="MehriamarqueeModel.beveragesWithFunctionWithMenu" />
+    <AssociationSet Name="FK_beveragesWithDesertWithFunctionWithMenu_Beverages1" Association="MehriamarqueeModel.FK_beveragesWithDesertWithFunctionWithMenu_Beverages1">
+      <End Role="Beverage" EntitySet="Beverages" />
+      <End Role="beveragesWithFunctionWithMenu" EntitySet="beveragesWithFunctionWithMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_beveragesWithFunctionWithMenu_Dishes" Association="MehriamarqueeModel.FK_beveragesWithFunctionWithMenu_Dishes">
+      <End Role="Dish" EntitySet="Dishes" />
+      <End Role="beveragesWithFunctionWithMenu" EntitySet="beveragesWithFunctionWithMenus" />
+    </AssociationSet>
+    <EntitySet Name="DesertWithFunctionWithMenus" EntityType="MehriamarqueeModel.DesertWithFunctionWithMenu" />
+    <AssociationSet Name="FK_DesertWithFunctionWithMenu_Deserts" Association="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_Deserts">
+      <End Role="Desert" EntitySet="Deserts" />
+      <End Role="DesertWithFunctionWithMenu" EntitySet="DesertWithFunctionWithMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DesertWithFunctionWithMenu_Dishes" Association="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_Dishes">
+      <End Role="Dish" EntitySet="Dishes" />
+      <End Role="DesertWithFunctionWithMenu" EntitySet="DesertWithFunctionWithMenus" />
+    </AssociationSet>
+    <EntitySet Name="headOfAccounts" EntityType="MehriamarqueeModel.headOfAccount" />
+    <EntitySet Name="subTypesOfHeadAccounts" EntityType="MehriamarqueeModel.subTypesOfHeadAccount" />
+    <AssociationSet Name="FK_subTypesOfHeadAccounts_headOfAccounts" Association="MehriamarqueeModel.FK_subTypesOfHeadAccounts_headOfAccounts">
+      <End Role="headOfAccount" EntitySet="headOfAccounts" />
+      <End Role="subTypesOfHeadAccount" EntitySet="subTypesOfHeadAccounts" />
+    </AssociationSet>
+    <EntitySet Name="Accounts" EntityType="MehriamarqueeModel.Account" />
+    <EntitySet Name="AccountTransactions" EntityType="MehriamarqueeModel.AccountTransaction" />
+    <AssociationSet Name="FK_AccountTransaction_Account" Association="MehriamarqueeModel.FK_AccountTransaction_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="AccountTransaction" EntitySet="AccountTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountTransaction_subTypesOfHeadAccounts" Association="MehriamarqueeModel.FK_AccountTransaction_subTypesOfHeadAccounts">
+      <End Role="subTypesOfHeadAccount" EntitySet="subTypesOfHeadAccounts" />
+      <End Role="AccountTransaction" EntitySet="AccountTransactions" />
+    </AssociationSet>
+    <EntitySet Name="SubAccountBalances" EntityType="MehriamarqueeModel.SubAccountBalance" />
+    <AssociationSet Name="FK_SubAccountBalances_Account" Association="MehriamarqueeModel.FK_SubAccountBalances_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="SubAccountBalance" EntitySet="SubAccountBalances" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubAccountBalances_subTypesOfHeadAccounts" Association="MehriamarqueeModel.FK_SubAccountBalances_subTypesOfHeadAccounts">
+      <End Role="subTypesOfHeadAccount" EntitySet="subTypesOfHeadAccounts" />
+      <End Role="SubAccountBalance" EntitySet="SubAccountBalances" />
+    </AssociationSet>
+    <EntitySet Name="Customers" EntityType="MehriamarqueeModel.Customer" />
+    <EntitySet Name="QuantityupdateBeveragestables" EntityType="MehriamarqueeModel.QuantityupdateBeveragestable" />
+    <EntitySet Name="QuantityupdatedDeserttables" EntityType="MehriamarqueeModel.QuantityupdatedDeserttable" />
+    <EntitySet Name="QuantityupdatedItemtables" EntityType="MehriamarqueeModel.QuantityupdatedItemtable" />
+    <AssociationSet Name="FK_QuantityupdateBeveragestable_Beverages" Association="MehriamarqueeModel.FK_QuantityupdateBeveragestable_Beverages">
+      <End Role="Beverage" EntitySet="Beverages" />
+      <End Role="QuantityupdateBeveragestable" EntitySet="QuantityupdateBeveragestables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuantityupdatedDeserttable_Deserts" Association="MehriamarqueeModel.FK_QuantityupdatedDeserttable_Deserts">
+      <End Role="Desert" EntitySet="Deserts" />
+      <End Role="QuantityupdatedDeserttable" EntitySet="QuantityupdatedDeserttables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuantityupdatedItemtable_Items" Association="MehriamarqueeModel.FK_QuantityupdatedItemtable_Items">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="QuantityupdatedItemtable" EntitySet="QuantityupdatedItemtables" />
+    </AssociationSet>
+    <EntitySet Name="FunctionRequestedTables" EntityType="MehriamarqueeModel.FunctionRequestedTable" />
+    <AssociationSet Name="FK_beveragesWithDesertWithFunctionWithMenu_FunctionRequestedTable" Association="MehriamarqueeModel.FK_beveragesWithDesertWithFunctionWithMenu_FunctionRequestedTable">
+      <End Role="FunctionRequestedTable" EntitySet="FunctionRequestedTables" />
+      <End Role="beveragesWithFunctionWithMenu" EntitySet="beveragesWithFunctionWithMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DesertWithFunctionWithMenu_FunctionRequestedTable" Association="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_FunctionRequestedTable">
+      <End Role="FunctionRequestedTable" EntitySet="FunctionRequestedTables" />
+      <End Role="DesertWithFunctionWithMenu" EntitySet="DesertWithFunctionWithMenus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DishWithItems_FunctionRequestedTable" Association="MehriamarqueeModel.FK_DishWithItems_FunctionRequestedTable">
+      <End Role="FunctionRequestedTable" EntitySet="FunctionRequestedTables" />
+      <End Role="DishWithItem" EntitySet="DishWithItems" />
+    </AssociationSet>
+    <EntitySet Name="Bookingdatas" EntityType="MehriamarqueeModel.Bookingdata" />
+    <AssociationSet Name="FK_AdditionalFacilitiesandFunction_Bookingdata" Association="MehriamarqueeModel.FK_AdditionalFacilitiesandFunction_Bookingdata">
+      <End Role="Bookingdata" EntitySet="Bookingdatas" />
+      <End Role="AdditionalFacilitiesandFunction" EntitySet="AdditionalFacilitiesandFunctions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bookingdata_Customer" Association="MehriamarqueeModel.FK_Bookingdata_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Bookingdata" EntitySet="Bookingdatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bookingdata_Menus" Association="MehriamarqueeModel.FK_Bookingdata_Menus">
+      <End Role="Menu" EntitySet="Menus" />
+      <End Role="Bookingdata" EntitySet="Bookingdatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bookingdata_Programs" Association="MehriamarqueeModel.FK_Bookingdata_Programs">
+      <End Role="Program" EntitySet="Programs" />
+      <End Role="Bookingdata" EntitySet="Bookingdatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FunctionRequestedTable_Bookingdata" Association="MehriamarqueeModel.FK_FunctionRequestedTable_Bookingdata">
+      <End Role="Bookingdata" EntitySet="Bookingdatas" />
+      <End Role="FunctionRequestedTable" EntitySet="FunctionRequestedTables" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Beverage">
+    <Key>
+      <PropertyRef Name="beverageId" />
+    </Key>
+    <Property Name="beverageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="beveragesName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="beveragesSalePrice" Type="Int32" Nullable="false" />
+    <Property Name="beveragesPurchasePrice" Type="Int32" Nullable="false" />
+    <Property Name="quantityOfBeverages" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="beveragesWithFunctionWithMenus" Relationship="MehriamarqueeModel.FK_beveragesWithDesertWithFunctionWithMenu_Beverages1" FromRole="Beverage" ToRole="beveragesWithFunctionWithMenu" />
+    <NavigationProperty Name="QuantityupdateBeveragestables" Relationship="MehriamarqueeModel.FK_QuantityupdateBeveragestable_Beverages" FromRole="Beverage" ToRole="QuantityupdateBeveragestable" />
+  </EntityType>
+  <EntityType Name="Desert">
+    <Key>
+      <PropertyRef Name="desertId" />
+    </Key>
+    <Property Name="desertId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="desertName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="desertSalePrice" Type="Int32" Nullable="false" />
+    <Property Name="desertPurchasePrice" Type="Int32" Nullable="false" />
+    <Property Name="quantityOfdesert" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DesertWithFunctionWithMenus" Relationship="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_Deserts" FromRole="Desert" ToRole="DesertWithFunctionWithMenu" />
+    <NavigationProperty Name="QuantityupdatedDeserttables" Relationship="MehriamarqueeModel.FK_QuantityupdatedDeserttable_Deserts" FromRole="Desert" ToRole="QuantityupdatedDeserttable" />
+  </EntityType>
+  <EntityType Name="DishWithItem">
+    <Key>
+      <PropertyRef Name="dishAndItemID" />
+    </Key>
+    <Property Name="dishAndItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="requestID" Type="Int32" Nullable="false" />
+    <Property Name="dishId" Type="Int32" Nullable="false" />
+    <Property Name="itemId" Type="Int32" Nullable="false" />
+    <Property Name="qunatityOfItems" Type="Int32" Nullable="false" />
+    <Property Name="priceOfItems" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Dish" Relationship="MehriamarqueeModel.FK_DishWithItems_Dishes" FromRole="DishWithItem" ToRole="Dish" />
+    <NavigationProperty Name="Item" Relationship="MehriamarqueeModel.FK_DishWithItems_Items" FromRole="DishWithItem" ToRole="Item" />
+    <NavigationProperty Name="FunctionRequestedTable" Relationship="MehriamarqueeModel.FK_DishWithItems_FunctionRequestedTable" FromRole="DishWithItem" ToRole="FunctionRequestedTable" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="itemId" />
+    </Key>
+    <Property Name="itemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="salesPrice" Type="Int32" Nullable="false" />
+    <Property Name="purchasePrice" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="unit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DishWithItems" Relationship="MehriamarqueeModel.FK_DishWithItems_Items" FromRole="Item" ToRole="DishWithItem" />
+    <NavigationProperty Name="QuantityupdatedItemtables" Relationship="MehriamarqueeModel.FK_QuantityupdatedItemtable_Items" FromRole="Item" ToRole="QuantityupdatedItemtable" />
+  </EntityType>
+  <Association Name="FK_DishWithItems_Dishes">
+    <End Type="MehriamarqueeModel.Dish" Role="Dish" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.DishWithItem" Role="DishWithItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dish">
+        <PropertyRef Name="dishID" />
+      </Principal>
+      <Dependent Role="DishWithItem">
+        <PropertyRef Name="dishId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishWithItems_Items">
+    <End Type="MehriamarqueeModel.Item" Role="Item" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.DishWithItem" Role="DishWithItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="itemId" />
+      </Principal>
+      <Dependent Role="DishWithItem">
+        <PropertyRef Name="itemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="beveragesWithFunctionWithMenu">
+    <Key>
+      <PropertyRef Name="beveragesWithDesertWithFunctionWithMenuID" />
+    </Key>
+    <Property Name="beveragesWithDesertWithFunctionWithMenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="beverageID" Type="Int32" Nullable="false" />
+    <Property Name="quantityBeverages" Type="Int32" Nullable="false" />
+    <Property Name="dishID" Type="Int32" Nullable="false" />
+    <Property Name="requestID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Beverage" Relationship="MehriamarqueeModel.FK_beveragesWithDesertWithFunctionWithMenu_Beverages1" FromRole="beveragesWithFunctionWithMenu" ToRole="Beverage" />
+    <NavigationProperty Name="Dish" Relationship="MehriamarqueeModel.FK_beveragesWithFunctionWithMenu_Dishes" FromRole="beveragesWithFunctionWithMenu" ToRole="Dish" />
+    <Property Name="PriceBeverages" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FunctionRequestedTable" Relationship="MehriamarqueeModel.FK_beveragesWithDesertWithFunctionWithMenu_FunctionRequestedTable" FromRole="beveragesWithFunctionWithMenu" ToRole="FunctionRequestedTable" />
+  </EntityType>
+  <Association Name="FK_beveragesWithDesertWithFunctionWithMenu_Beverages1">
+    <End Type="MehriamarqueeModel.Beverage" Role="Beverage" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.beveragesWithFunctionWithMenu" Role="beveragesWithFunctionWithMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Beverage">
+        <PropertyRef Name="beverageId" />
+      </Principal>
+      <Dependent Role="beveragesWithFunctionWithMenu">
+        <PropertyRef Name="beverageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_beveragesWithFunctionWithMenu_Dishes">
+    <End Type="MehriamarqueeModel.Dish" Role="Dish" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.beveragesWithFunctionWithMenu" Role="beveragesWithFunctionWithMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dish">
+        <PropertyRef Name="dishID" />
+      </Principal>
+      <Dependent Role="beveragesWithFunctionWithMenu">
+        <PropertyRef Name="dishID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DesertWithFunctionWithMenu">
+    <Key>
+      <PropertyRef Name="DesertWithFunctionWithMenuId" />
+    </Key>
+    <Property Name="DesertWithFunctionWithMenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="desertID" Type="Int32" Nullable="false" />
+    <Property Name="PriceDesert" Type="Int32" Nullable="false" />
+    <Property Name="quantityDesert" Type="Int32" Nullable="false" />
+    <Property Name="dishID" Type="Int32" Nullable="false" />
+    <Property Name="requestID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Desert" Relationship="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_Deserts" FromRole="DesertWithFunctionWithMenu" ToRole="Desert" />
+    <NavigationProperty Name="Dish" Relationship="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_Dishes" FromRole="DesertWithFunctionWithMenu" ToRole="Dish" />
+    <NavigationProperty Name="FunctionRequestedTable" Relationship="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_FunctionRequestedTable" FromRole="DesertWithFunctionWithMenu" ToRole="FunctionRequestedTable" />
+  </EntityType>
+  <Association Name="FK_DesertWithFunctionWithMenu_Deserts">
+    <End Type="MehriamarqueeModel.Desert" Role="Desert" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.DesertWithFunctionWithMenu" Role="DesertWithFunctionWithMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Desert">
+        <PropertyRef Name="desertId" />
+      </Principal>
+      <Dependent Role="DesertWithFunctionWithMenu">
+        <PropertyRef Name="desertID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DesertWithFunctionWithMenu_Dishes">
+    <End Type="MehriamarqueeModel.Dish" Role="Dish" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.DesertWithFunctionWithMenu" Role="DesertWithFunctionWithMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dish">
+        <PropertyRef Name="dishID" />
+      </Principal>
+      <Dependent Role="DesertWithFunctionWithMenu">
+        <PropertyRef Name="dishID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="headOfAccount">
+    <Key>
+      <PropertyRef Name="typeID" />
+    </Key>
+    <Property Name="typeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="typeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="subTypesOfHeadAccounts" Relationship="MehriamarqueeModel.FK_subTypesOfHeadAccounts_headOfAccounts" FromRole="headOfAccount" ToRole="subTypesOfHeadAccount" />
+  </EntityType>
+  <EntityType Name="subTypesOfHeadAccount">
+    <Key>
+      <PropertyRef Name="subID" />
+    </Key>
+    <Property Name="subID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="typeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="headOfAccount" Relationship="MehriamarqueeModel.FK_subTypesOfHeadAccounts_headOfAccounts" FromRole="subTypesOfHeadAccount" ToRole="headOfAccount" />
+    <NavigationProperty Name="AccountTransactions" Relationship="MehriamarqueeModel.FK_AccountTransaction_subTypesOfHeadAccounts" FromRole="subTypesOfHeadAccount" ToRole="AccountTransaction" />
+    <NavigationProperty Name="SubAccountBalances" Relationship="MehriamarqueeModel.FK_SubAccountBalances_subTypesOfHeadAccounts" FromRole="subTypesOfHeadAccount" ToRole="SubAccountBalance" />
+  </EntityType>
+  <Association Name="FK_subTypesOfHeadAccounts_headOfAccounts">
+    <End Type="MehriamarqueeModel.headOfAccount" Role="headOfAccount" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.subTypesOfHeadAccount" Role="subTypesOfHeadAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="headOfAccount">
+        <PropertyRef Name="typeID" />
+      </Principal>
+      <Dependent Role="subTypesOfHeadAccount">
+        <PropertyRef Name="typeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="accountNo" />
+    </Key>
+    <Property Name="accountNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="accountName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobileNo" Type="Int64" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccountTransactions" Relationship="MehriamarqueeModel.FK_AccountTransaction_Account" FromRole="Account" ToRole="AccountTransaction" />
+    <NavigationProperty Name="SubAccountBalances" Relationship="MehriamarqueeModel.FK_SubAccountBalances_Account" FromRole="Account" ToRole="SubAccountBalance" />
+  </EntityType>
+  <EntityType Name="AccountTransaction">
+    <Key>
+      <PropertyRef Name="transactionID" />
+    </Key>
+    <Property Name="transactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transactionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="transactionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Debit_Credit" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="amount" Type="Int64" Nullable="false" />
+    <Property Name="subtypeID" Type="Int32" Nullable="false" />
+    <Property Name="accountNo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="MehriamarqueeModel.FK_AccountTransaction_Account" FromRole="AccountTransaction" ToRole="Account" />
+    <NavigationProperty Name="subTypesOfHeadAccount" Relationship="MehriamarqueeModel.FK_AccountTransaction_subTypesOfHeadAccounts" FromRole="AccountTransaction" ToRole="subTypesOfHeadAccount" />
+  </EntityType>
+  <Association Name="FK_AccountTransaction_Account">
+    <End Type="MehriamarqueeModel.Account" Role="Account" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.AccountTransaction" Role="AccountTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="accountNo" />
+      </Principal>
+      <Dependent Role="AccountTransaction">
+        <PropertyRef Name="accountNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountTransaction_subTypesOfHeadAccounts">
+    <End Type="MehriamarqueeModel.subTypesOfHeadAccount" Role="subTypesOfHeadAccount" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.AccountTransaction" Role="AccountTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subTypesOfHeadAccount">
+        <PropertyRef Name="subID" />
+      </Principal>
+      <Dependent Role="AccountTransaction">
+        <PropertyRef Name="subtypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SubAccountBalance">
+    <Key>
+      <PropertyRef Name="accountbalanceID" />
+    </Key>
+    <Property Name="accountbalanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Debit" Type="Int64" Nullable="false" />
+    <Property Name="Credit" Type="Int64" Nullable="false" />
+    <Property Name="accountNo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="MehriamarqueeModel.FK_SubAccountBalances_Account" FromRole="SubAccountBalance" ToRole="Account" />
+    <NavigationProperty Name="subTypesOfHeadAccount" Relationship="MehriamarqueeModel.FK_SubAccountBalances_subTypesOfHeadAccounts" FromRole="SubAccountBalance" ToRole="subTypesOfHeadAccount" />
+  </EntityType>
+  <Association Name="FK_SubAccountBalances_Account">
+    <End Type="MehriamarqueeModel.Account" Role="Account" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.SubAccountBalance" Role="SubAccountBalance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="accountNo" />
+      </Principal>
+      <Dependent Role="SubAccountBalance">
+        <PropertyRef Name="accountNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubAccountBalances_subTypesOfHeadAccounts">
+    <End Type="MehriamarqueeModel.subTypesOfHeadAccount" Role="subTypesOfHeadAccount" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.SubAccountBalance" Role="SubAccountBalance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subTypesOfHeadAccount">
+        <PropertyRef Name="subID" />
+      </Principal>
+      <Dependent Role="SubAccountBalance">
+        <PropertyRef Name="subID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CnicNo" Type="Int64" Nullable="false" />
+    <Property Name="customerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobileNo" Type="Int64" Nullable="false" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Bookingdatas" Relationship="MehriamarqueeModel.FK_Bookingdata_Customer" FromRole="Customer" ToRole="Bookingdata" />
+  </EntityType>
+  <EntityType Name="QuantityupdateBeveragestable">
+    <Key>
+      <PropertyRef Name="changebeveID" />
+    </Key>
+    <Property Name="changebeveID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="beverageID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Beverage" Relationship="MehriamarqueeModel.FK_QuantityupdateBeveragestable_Beverages" FromRole="QuantityupdateBeveragestable" ToRole="Beverage" />
+  </EntityType>
+  <EntityType Name="QuantityupdatedDeserttable">
+    <Key>
+      <PropertyRef Name="changeditemID" />
+    </Key>
+    <Property Name="changeditemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="desertID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Desert" Relationship="MehriamarqueeModel.FK_QuantityupdatedDeserttable_Deserts" FromRole="QuantityupdatedDeserttable" ToRole="Desert" />
+  </EntityType>
+  <EntityType Name="QuantityupdatedItemtable">
+    <Key>
+      <PropertyRef Name="changeditemID" />
+    </Key>
+    <Property Name="changeditemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itemID" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Item" Relationship="MehriamarqueeModel.FK_QuantityupdatedItemtable_Items" FromRole="QuantityupdatedItemtable" ToRole="Item" />
+  </EntityType>
+  <Association Name="FK_QuantityupdateBeveragestable_Beverages">
+    <End Type="MehriamarqueeModel.Beverage" Role="Beverage" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.QuantityupdateBeveragestable" Role="QuantityupdateBeveragestable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Beverage">
+        <PropertyRef Name="beverageId" />
+      </Principal>
+      <Dependent Role="QuantityupdateBeveragestable">
+        <PropertyRef Name="beverageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuantityupdatedDeserttable_Deserts">
+    <End Type="MehriamarqueeModel.Desert" Role="Desert" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.QuantityupdatedDeserttable" Role="QuantityupdatedDeserttable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Desert">
+        <PropertyRef Name="desertId" />
+      </Principal>
+      <Dependent Role="QuantityupdatedDeserttable">
+        <PropertyRef Name="desertID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuantityupdatedItemtable_Items">
+    <End Type="MehriamarqueeModel.Item" Role="Item" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.QuantityupdatedItemtable" Role="QuantityupdatedItemtable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="itemId" />
+      </Principal>
+      <Dependent Role="QuantityupdatedItemtable">
+        <PropertyRef Name="itemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FunctionRequestedTable">
+    <Key>
+      <PropertyRef Name="requestID" />
+    </Key>
+    <Property Name="requestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="functionID" Type="Int32" Nullable="false" />
+    <Property Name="requestDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="beveragesWithFunctionWithMenus" Relationship="MehriamarqueeModel.FK_beveragesWithDesertWithFunctionWithMenu_FunctionRequestedTable" FromRole="FunctionRequestedTable" ToRole="beveragesWithFunctionWithMenu" />
+    <NavigationProperty Name="DesertWithFunctionWithMenus" Relationship="MehriamarqueeModel.FK_DesertWithFunctionWithMenu_FunctionRequestedTable" FromRole="FunctionRequestedTable" ToRole="DesertWithFunctionWithMenu" />
+    <NavigationProperty Name="DishWithItems" Relationship="MehriamarqueeModel.FK_DishWithItems_FunctionRequestedTable" FromRole="FunctionRequestedTable" ToRole="DishWithItem" />
+    <NavigationProperty Name="Bookingdata" Relationship="MehriamarqueeModel.FK_FunctionRequestedTable_Bookingdata" FromRole="FunctionRequestedTable" ToRole="Bookingdata" />
+  </EntityType>
+  <Association Name="FK_beveragesWithDesertWithFunctionWithMenu_FunctionRequestedTable">
+    <End Type="MehriamarqueeModel.FunctionRequestedTable" Role="FunctionRequestedTable" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.beveragesWithFunctionWithMenu" Role="beveragesWithFunctionWithMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FunctionRequestedTable">
+        <PropertyRef Name="requestID" />
+      </Principal>
+      <Dependent Role="beveragesWithFunctionWithMenu">
+        <PropertyRef Name="requestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DesertWithFunctionWithMenu_FunctionRequestedTable">
+    <End Type="MehriamarqueeModel.FunctionRequestedTable" Role="FunctionRequestedTable" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.DesertWithFunctionWithMenu" Role="DesertWithFunctionWithMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FunctionRequestedTable">
+        <PropertyRef Name="requestID" />
+      </Principal>
+      <Dependent Role="DesertWithFunctionWithMenu">
+        <PropertyRef Name="requestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DishWithItems_FunctionRequestedTable">
+    <End Type="MehriamarqueeModel.FunctionRequestedTable" Role="FunctionRequestedTable" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.DishWithItem" Role="DishWithItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FunctionRequestedTable">
+        <PropertyRef Name="requestID" />
+      </Principal>
+      <Dependent Role="DishWithItem">
+        <PropertyRef Name="requestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Bookingdata">
+    <Key>
+      <PropertyRef Name="functionID" />
+    </Key>
+    <Property Name="functionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bookingDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="functionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="noofGuest" Type="Int32" Nullable="false" />
+    <Property Name="rateperGuest" Type="Int32" Nullable="false" />
+    <Property Name="AdvancePayment" Type="Int32" />
+    <Property Name="RemainingPayment" Type="Int32" />
+    <Property Name="Extras" Type="Int32" Nullable="false" />
+    <Property Name="TotalCharges" Type="Int32" Nullable="false" />
+    <Property Name="timeShift" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MenuId" Type="Int32" Nullable="false" />
+    <Property Name="ProgramId" Type="Int32" Nullable="false" />
+    <Property Name="CnicNo" Type="Int64" Nullable="false" />
+    <Property Name="customerID" Type="Int32" Nullable="false" />
+    <Property Name="RequestStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="AdditionalFacilitiesandFunctions" Relationship="MehriamarqueeModel.FK_AdditionalFacilitiesandFunction_Bookingdata" FromRole="Bookingdata" ToRole="AdditionalFacilitiesandFunction" />
+    <NavigationProperty Name="Customer" Relationship="MehriamarqueeModel.FK_Bookingdata_Customer" FromRole="Bookingdata" ToRole="Customer" />
+    <NavigationProperty Name="Menu" Relationship="MehriamarqueeModel.FK_Bookingdata_Menus" FromRole="Bookingdata" ToRole="Menu" />
+    <NavigationProperty Name="Program" Relationship="MehriamarqueeModel.FK_Bookingdata_Programs" FromRole="Bookingdata" ToRole="Program" />
+    <NavigationProperty Name="FunctionRequestedTables" Relationship="MehriamarqueeModel.FK_FunctionRequestedTable_Bookingdata" FromRole="Bookingdata" ToRole="FunctionRequestedTable" />
+  </EntityType>
+  <Association Name="FK_AdditionalFacilitiesandFunction_Bookingdata">
+    <End Type="MehriamarqueeModel.Bookingdata" Role="Bookingdata" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.AdditionalFacilitiesandFunction" Role="AdditionalFacilitiesandFunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bookingdata">
+        <PropertyRef Name="functionID" />
+      </Principal>
+      <Dependent Role="AdditionalFacilitiesandFunction">
+        <PropertyRef Name="functionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bookingdata_Customer">
+    <End Type="MehriamarqueeModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.Bookingdata" Role="Bookingdata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customerID" />
+      </Principal>
+      <Dependent Role="Bookingdata">
+        <PropertyRef Name="customerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bookingdata_Menus">
+    <End Type="MehriamarqueeModel.Menu" Role="Menu" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.Bookingdata" Role="Bookingdata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="menuID" />
+      </Principal>
+      <Dependent Role="Bookingdata">
+        <PropertyRef Name="MenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bookingdata_Programs">
+    <End Type="MehriamarqueeModel.Program" Role="Program" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.Bookingdata" Role="Bookingdata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Program">
+        <PropertyRef Name="programID" />
+      </Principal>
+      <Dependent Role="Bookingdata">
+        <PropertyRef Name="ProgramId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FunctionRequestedTable_Bookingdata">
+    <End Type="MehriamarqueeModel.Bookingdata" Role="Bookingdata" Multiplicity="1" />
+    <End Type="MehriamarqueeModel.FunctionRequestedTable" Role="FunctionRequestedTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bookingdata">
+        <PropertyRef Name="functionID" />
+      </Principal>
+      <Dependent Role="FunctionRequestedTable">
+        <PropertyRef Name="functionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
